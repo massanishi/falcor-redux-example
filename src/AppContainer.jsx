@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as CounterActions from "./actions";
+import * as actions from "./actions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
@@ -11,7 +11,7 @@ class AppContainer extends Component {
   // }
 
   componentWillMount() {
-    // this.props.user.getTitle();
+    this.props.actions.getTitle();
   }
 
   render() {
@@ -30,7 +30,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    // user: bindActionCreators-(_.extend(CounterActions, { setPath: setPath }), dispatch)
+    actions: bindActionCreators(actions, dispatch),
   }
 }
 

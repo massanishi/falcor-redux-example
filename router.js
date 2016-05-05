@@ -5,6 +5,7 @@ module.exports = new Router([
   {
     route: "title",
     get: () => {
+      console.log('getting title:');
       return { path: [ "title" ], value: 'Hello world!' }
     },
   },
