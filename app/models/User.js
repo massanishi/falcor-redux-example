@@ -1,24 +1,23 @@
-import Sequelize from "sequelize"
-import sequelize from "../db.js"
+const Sequelize = require("sequelize")
+const db = require("../db")
 
-const User = sequelize.define("user", {
+const User = db.define("user", {
   firstName: {
     type: Sequelize.STRING,
-    field: "first_name",
   },
   lastName: {
     type: Sequelize.STRING,
   },
-}, {
-  freezeTableName: true,
-})
+});
 
 User.sync({ force: true }).then(function() {
   // Table created
   User.create({
     firstName: "John",
     lastName: "Hancock",
+  }).then(user => {
+    console.log('created a user ');
   })
 })
 
-export default User
+module.exports = User
