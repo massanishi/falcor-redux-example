@@ -4,17 +4,13 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 class AppContainer extends Component {
-  // fetchFalcorDeps() {
-  //   // return this.props.falcor.get(
-  //   //   ['currentUser', App.queries.user()],
-  //   // );
-  // }
-
   componentWillMount() {
-    this.props.actions.getTitle();
+    this.props.actions.getUser();
   }
 
   render() {
+    const { users } = this.props;
+    console.log('users', users);
     return <p>HI</p>
   }
 }
@@ -22,9 +18,7 @@ class AppContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    // counter: state.counterReducer.get("counter"),
-    // title: state.falcorReducer.title,
-    // user: state.falcorReducer.user,
+    users: state.users,
   };
 }
 

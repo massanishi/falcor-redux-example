@@ -1,11 +1,11 @@
 import { combineReducers } from "redux"
-// import { reducer as falcorReducer } from "redux-falcor"
-
 
 const user = (state={}, action) => {
   switch (action.type) {
-    case 'Test':
-      return state;
+    case 'RECEIVE_USERS':
+    // not duplicate checking... 
+    // If falcor's caching, the component should access the db directly. 
+      return [...state, action.users];
     default:
       return state;
   }

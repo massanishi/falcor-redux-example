@@ -6,7 +6,7 @@ const mock = {
   content: 'content',
   sub: 'subtitle',
 };
-console.log('User:', User);
+
 module.exports = new Router([
   {
     route: "title",
@@ -22,6 +22,30 @@ module.exports = new Router([
         return { path: [ "user" ], value: $ref(user) }
       })
       // return { path: [ "user" ], value: 'user' };
+    },
+  },
+  {
+    route: "users[{integers:indices}]",
+    get: (path) => {
+      return User.findAll().then(users => {
+        const array = [];
+        path.indices.forEach(index => {
+          const u = users[index];
+          if (!u) {
+            array.push({
+              path: ['users', index],
+              value: null,
+            });
+          } else {
+           array.push({
+              path: ['users', index],
+              value: $ref(u),
+            }); 
+          }
+        });
+
+        return { path: [ "users" ], value: $ref(users) }
+      });
     },
   },
 ])
