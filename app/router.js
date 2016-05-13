@@ -25,7 +25,7 @@ module.exports = new Router([
     },
   },
   {
-    route: "users[{integers:indices}]",
+    route: "users[{integers:indices}]['firstName', 'lastName']",
     get: (path) => {
       return User.findAll().then(users => {
         const array = [];
@@ -37,10 +37,13 @@ module.exports = new Router([
               value: null,
             });
           } else {
-           array.push({
-              path: ['users', index],
-              value: $ref(u),
-            }); 
+
+            path[2].forEach(key => {
+              array.push({
+                 path: ['users', index, key],
+                 value: u[key],
+               });
+            });
           }
         });
 
