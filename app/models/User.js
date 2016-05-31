@@ -10,14 +10,4 @@ const User = db.define("user", {
   },
 });
 
-User.sync({ force: true }).then(function() {
-  // Table created
-  User.create({
-    firstName: "John",
-    lastName: "Hancock",
-  }).then(user => {
-    console.log('created a user ');
-  })
-})
-
-module.exports = User
+module.exports = User;

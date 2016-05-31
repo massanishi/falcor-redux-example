@@ -5,13 +5,22 @@ import { connect } from "react-redux";
 
 class AppContainer extends Component {
   componentWillMount() {
-    this.props.actions.getUser();
+    this.props.actions.getUsers();
+  }
+
+  renderUsers(users) {
+    const array = users.map(u => {
+      return <li key={u.id} >{u.firstName}</li>
+  });
+    return <ol>{ array }</ol>
   }
 
   render() {
     const { users } = this.props;
     console.log('users', users);
-    return <p>HI</p>
+    return <div>
+      { this.renderUsers(users) }
+    </div>
   }
 }
 
